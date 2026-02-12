@@ -1,6 +1,22 @@
 module Helper exposing (..)
 
-import Html exposing (Html, div, h1, li, text, ul)
+import Html
+
+
+add2 : Int -> Int -> Int
+add2 x y =
+    x + y
+
+
+add3 : Int -> Int -> Int -> Int
+add3 x y z =
+    x + y + z
+
+
+calc : Int -> Int -> (Int -> Int -> Int) -> Int
+calc x y operation =
+    operation x y
+
 
 
 type alias ProgrammingLanguage =
@@ -22,6 +38,8 @@ languageNames langs =
     List.map .name langs
 
 
+
+
 type alias User =
     { name : String
     , uType : String
@@ -41,11 +59,12 @@ onlyStudents userList =
         (\u ->
             if u.uType == "Student" then
                 u.name
-
             else
                 ""
         )
         userList
+
+
 
 
 type alias Videogame =
@@ -79,6 +98,7 @@ getVideogameGenres gameList =
     List.map .genres gameList
 
 
+
 type alias Computer =
     { ram : String
     , model : String
@@ -96,16 +116,16 @@ myLaptop =
     }
 
 
-main : Html msg
+main : Html.Html msg
 main =
-    div []
-        [ h1 [] [ text "My laptop" ]
-        , div []
-            [ ul []
-                [ li [] [ text ("Ram: " ++ myLaptop.ram) ]
-                , li [] [ text ("Modelo: " ++ myLaptop.model) ]
-                , li [] [ text ("Marca: " ++ myLaptop.brand) ]
-                , li [] [ text ("Pulgadas: " ++ myLaptop.screenSize) ]
+    Html.div []
+        [ Html.h1 [] [ Html.text "My laptop" ]
+        , Html.div []
+            [ Html.ul []
+                [ Html.li [] [ Html.text ("Ram: " ++ myLaptop.ram) ]
+                , Html.li [] [ Html.text ("Modelo: " ++ myLaptop.model) ]
+                , Html.li [] [ Html.text ("Marca: " ++ myLaptop.brand) ]
+                , Html.li [] [ Html.text ("Pulgadas: " ++ myLaptop.screenSize) ]
                 ]
             ]
         ]
